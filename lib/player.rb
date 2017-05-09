@@ -1,20 +1,21 @@
 class Player
-attr_reader :name, :players
+attr_reader :name
 
 def initialize(*handle)
-  if players.nil?
-    players = [self]
-  else
-    players.push (self)
-  end
-  if handle[0].nil?
-    self.name = "Player#{players.count}"
-  else
+  @@players.push(self)
+  if handle
     self.name = handle[0]
+  else
+    self.name = "Player#{@@players.count}"
   end
 end
 
+def self.players
+  @@players
+end
+
 private
-attr_writer :name, :players
+attr_writer :name
+@@players = []
 
 end

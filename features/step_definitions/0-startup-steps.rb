@@ -1,24 +1,13 @@
 Given(/^a file 'lib\/app\.rb' is loaded$/) do
-  pending
+  expect(require_relative '../../lib/app').to be(true)
 end
 
 When(/^I successfully execute `App\.start`$/) do
-  pending
+  allow(App).to receive(:show_menu)
+  App::start
+  expect(App).to have_received(:show_menu)
 end
 
 Then(/^I should see a menu with:$/) do |string|
   pending
-end
-
-Given(/^a file 'lib\/app\.rb' exists$/) do
-  File.new('lib/app.rb').readline == 'class App\n'
-end
-
-When(/^I successfully execute '(ruby\s.+\.rb\s.+)'$/) do |rb|
-  command = rb.split.join "' '"
-  expect(system('\'command\'')).to be(true)
-end
-
-Then(/^it should exit$/) do
-
 end
