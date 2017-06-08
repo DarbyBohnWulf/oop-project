@@ -10,11 +10,13 @@ module App
     case option[0]
     when nil
       App.show_menu(@@main_menu)
-      App.interpret_options
+      App.start(App.interpret_options.to_i)
     when 't', 1
       @game = TicTacToe.start
+      TicTacToe.play(@game)
     when 'm', 2
       @game = Mastermind.start
+      TicTacToe.play(@game)
     when 'X', 0
       exit
     else

@@ -1,4 +1,5 @@
 require 'player'
+require 'app'
 
 describe Player do
   describe '::new' do
@@ -20,6 +21,15 @@ describe Player do
         player1 = Player.new
         player2 = Player.new
         expect(player2.name).to eq("Player#{Player.players.count}")
+      end
+    end
+  end
+
+  describe '::make_move' do
+    context 'while a game is not over' do
+      it 'prompts the player to make a move' do
+        game = TicTacToe.new
+        expect{ game.players[:exes][0].make_move }.to output.to_stdout
       end
     end
   end
